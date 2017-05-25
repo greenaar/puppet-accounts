@@ -1,7 +1,7 @@
 # Accounts
 
-# put all of your users into a top level yaml. They will not get activated 
-# unless role matches.  Most of the options are just that, optional.
+put all of your users into a top level yaml. They will not get activated 
+unless role matches.  Most of the options are just that, optional.
 
 common.yaml 
 ---
