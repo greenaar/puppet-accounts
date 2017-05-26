@@ -1,18 +1,18 @@
 # virtual resource to create a local user
 
 define accounts::functions::virtual(
-  $ensure     = $accounts::params::ensure,
-  $comment    = $accounts::params::comment,
-  $gid        = $accounts::params::gid,
-  $groups     = $accounts::params::groups,
-  $home       = $accounts::params::home,
-  $managehome = $accounts::params::managehome,
-  $password   = $accounts::params::password,
-  $provider   = $accounts::params::provider,
-  $shell      = $accounts::params::shell,
-  $system     = $accounts::params::system,
-  $uid        = $accounts::params::uid,
-  $keys       = $accounts::params::keys,
+  $ensure     = present,
+  $comment    = undef,
+  $gid        = undef,
+  $groups     = undef,
+  $home       = "/home/${title}",
+  $managehome = true,
+  $password   = undef,
+  $provider   = undef,
+  $shell      = '/bin/bash',
+  $system     = false,
+  $uid        = undef,
+  $keys       = undef,
   $roles      = undef,
   ) {
 
@@ -40,17 +40,17 @@ define accounts::functions::virtual(
     uid        => $uid,
   }
 
-  if !defined(File["${home}/.ssh"]) {
-    file { "${home}/.ssh":
-      ensure  => directory,
-      owner   => $title,
-      mode    => '0700',
-      path    => "${home}/.ssh",
-      require => User[$title],
-    }
-  }
-
   if $keys {
+    if !defined(File["${home}/.ssh"]) {
+      file { "${home}/.ssh":
+        ensure  => directory,
+        owner   => $title,
+        mode    => '0700',
+        path    => "${home}/.ssh",
+        require => User[$title],
+      }
+    }
+
     file { "${home}/.ssh/authorized_keys":
       ensure  => file,
       owner   => $title,
