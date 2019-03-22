@@ -1,4 +1,4 @@
-#
+# Manage roles
 
 define accounts::functions::roles($type) {
   if $title == 'all' {
@@ -7,4 +7,3 @@ define accounts::functions::roles($type) {
     Accounts::Functions::Add_virtual <| roles == $title |>
   }
 }
-

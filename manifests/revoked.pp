@@ -4,11 +4,11 @@ class accounts::revoked () {
 
   $deleted = hiera_array(accounts::revoked, [])
 
-  accounts::functions::term{$deleted: }
-
-  user { $deleted:
-    ensure     => absent,
-    managehome => true,
+  if $deleted {
+    accounts::functions::term{ $deleted: }
+    user { $deleted:
+      ensure     => absent,
+      managehome => true,
+    }
   }
-
 }
