@@ -2,7 +2,10 @@
 
 class accounts::revoked () {
 
-  $deleted = hiera_array(accounts::revoked, [])
+  $deleted = lookup({
+                            'name'          => 'accounts::revoked',
+                            'default_value' => []
+                          })
 
   if $deleted {
     accounts::functions::term{ $deleted: }

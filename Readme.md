@@ -9,6 +9,11 @@ common.yaml
 classes:
   - accounts
 
+accounts::group:
+  users:
+    ensure: present
+    system: false
+
 accounts::users:
   edward:
     ensure: present
@@ -35,8 +40,7 @@ accounts::users:
 accounts::revoked:
  - joe
 
-
-# to add a group of users to a box, do the following, substituting roles where required.
+# to add a group of users to a system, do the following, substituting roles where required.
 
 accounts:::roles:
   - 'dev'

@@ -16,12 +16,6 @@ define accounts::functions::virtual(
   $roles      = undef,
   ) {
 
-  # Might be that the $pass field is present in hiera but empty.
-  # This would allow passwordless login. Fix this.
-  if $pass == '' {
-    $pass='!'
-  }
-
   if $ensure == 'absent' {
     accounts::functions::term{$title: }
   }
