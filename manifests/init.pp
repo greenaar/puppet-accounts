@@ -2,9 +2,10 @@
 #
 # See Readme.md for explanation of the {dirti,awesome}ness of this module.
 
-include accounts::params
-
 class accounts {
+
+  include accounts::params
+  
   anchor { 'accounts::begin': }
   -> class  { 'accounts::groups': }
   -> class  { 'accounts::users': }
