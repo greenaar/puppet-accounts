@@ -2,6 +2,8 @@
 #
 # See Readme.md for explanation of the {dirti,awesome}ness of this module.
 
+include accounts::params
+
 class accounts {
   anchor { 'accounts::begin': }
   -> class  { 'accounts::groups': }
